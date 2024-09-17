@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page Design by Tim Malang Polinema</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <style>
+        .hidden {
+            display: none;
+        }
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: #ff0000;
+            padding: 20px;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 800px;
+            height: 90%;
+            max-height: 500px;
+            margin: auto;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .modal-body {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-y: auto;
+            flex-grow: 1;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .modal-footer {
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            color: #ffffff;
+            margin-bottom: 10px;
+            animation: blink 1s infinite;
+            text-align: center;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        
+        .modal-content h3 {
+            margin-bottom: 20px; /* Spacing below the heading */
+            font-size: 18px; /* Adjust font size if needed */
+        }
+
+        .modal-content ol {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .modal-content li {
+            margin-bottom: 10px;
+        }
+
+        .modal-content button {
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .modal-content button#acceptButton {
+            background-color: #28a745; /* Green */
+        }
+
+        .modal-content button#declineButton {
+            background-color: #fd7e14; /* Orange */
+        }
+
+        .modal-content button#acceptButton:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        .modal-content button#declineButton:hover {
+            background-color: #e8590c; /* Darker orange on hover */
+        }
+    </style>
+</head>
+<body>
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <h2>INFO !!</h2>
+            <div class="modal-body">
+                <h3><strong>Syarat & Ketentuan Penggunaan</strong></h3>
+                <ol>
+                    <li><strong>FREE HOTSPOT PEMKOT YOGYAKARTA</strong> ini dikembangkan sebagai fasilitas publik oleh Pemkot Yogyakarta untuk menyediakan akses internet tidak berbayar bagi masyarakat.</li>
+                    <li>Pergunakan fasilitas ini untuk kegiatan positif, beretika, dan bernilai guna.</li>
+                    <li>Pemkot Yogyakarta tidak bertanggung jawab atas setiap kerugian material maupun immaterial akibat pemanfaatan fasilitas ini.</li>
+                    <li>Pastikan anda berinternet secara sehat dan turut merawat fasilitas ini demi kepentingan bersama.</li>
+                    <li><strong>DILARANG KERAS</strong> menggunakan fasilitas ini untuk kegiatan ilegal, pornografi, dan pelanggaran hukum.</li>
+                    <li>Bilamana terjadi pelanggaran hukum, pengelola freehotspot berhak untuk memberikan identitas pengguna jika diminta oleh pihak penegak hukum.</li>
+                </ol>
+            </div>
+            <div class="modal-footer">
+                <div id="timerContainer">
+                    <span id="timer">5</span> <!-- Hanya menampilkan timer -->
+                </div>
+                <button id="acceptButton" class="hidden">Saya Setuju</button>
+                <button id="declineButton" class="hidden">Saya Tidak Setuju</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="banner">
+        JIKA ADA KENDALA LAYANAN JSS BISA KONTAK DI 0274-515865 EXT 481 ATAU
+        <a href="tel:+6285159174877">KLIK DISINI</a>
+    </div>
+
+    <p style="text-align: center; font-size: 14px; margin-top: 30px; margin-bottom: 0%; color: #ffffff; background-color: #27A194; padding: 5px 10px; border-radius: 10px;">Design by Tim Malang POLINEMA</p>
+    <!-- Teks baru ditambahkan di sini -->
+
+    <div class="login-container">
+        <div class="image-container">
+            <img src="logo.png" alt="Deskripsi Gambar" />
+        </div>
+        <div class="video-container">
+            <video id="introVideo" width="100%" muted playsinline controls>
+                <source src="http://202.169.224.10/newjss/landing.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div id="countdownText">Klik Login setelah <span id="countdown">15</span> detik</div>
+
+        <form id="loginForm">
+            <button type="button" id="loginButton" class="hidden" onclick="autoLogin()">Login</button>
+        </form>
+        <div class="support-info">
+            <p class="support-text">Support by SIMS + Tim Malang POLINEMA</p>
+            <p class="support-text">Support WA <a href="https://wa.me/+6285159174877" target="_blank">+62 8515 9174 877</a></p>
+        </div>       
+    </div>
+
+    <script type="text/javascript">
+        var countdownDuration = 15;
+        var countdownElement = document.getElementById('countdown');
+        var countdownTextElement = document.getElementById('countdownText');
+        var loginButton = document.getElementById('loginButton');
+        const video = document.getElementById('introVideo');
+        var countdownInterval;
+        var isCountingDown = false; // Flag to track if countdown is running
+        var lastTime = 0; // Track the last allowed time
+
+        function startCountdown() {
+            if (isCountingDown) return; // Prevent multiple intervals
+
+            isCountingDown = true; // Set flag to true
+            countdownInterval = setInterval(function() {
+                countdownDuration--;
+                countdownElement.textContent = countdownDuration;
+
+                if (countdownDuration <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownTextElement.textContent = "Silahkan klik tombol Login";
+                    loginButton.classList.remove('hidden'); // Tampilkan tombol login
+                    isCountingDown = false; // Reset flag
+                }
+            }, 1000); // Perbarui setiap detik
+        }
+
+        video.onended = function() {
+            autoLogin();
+        };
+
+        video.onpause = function() {
+            clearInterval(countdownInterval);
+            isCountingDown = false; // Reset flag
+        };
+
+        video.onplay = function() {
+            if (!isCountingDown) {
+                startCountdown();
+            }
+        };
+
+        video.addEventListener('seeking', function() {
+            // Cegah seeking maju atau mundur
+            if (video.currentTime > lastTime) {
+                video.currentTime = lastTime;
+            } else if (video.currentTime < lastTime) {
+                video.currentTime = lastTime;
+            }
+        });
+
+        video.addEventListener('timeupdate', function() {
+            if (!video.seeking) {
+                lastTime = video.currentTime;
+            }
+        });
+
+        function autoLogin() {
+            var form = document.getElementById('loginForm');
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/login', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.error('Form submission failed:', xhr.status);
+                    alert('Form submission failed. Please try again.');
+                } else if (xhr.readyState === 4) {
+                    window.location.href = 'https://jss.jogjakota.go.id/';
+                }
+            };
+
+            var params = 'username=user&password=user';
+            xhr.send(params);
+        }
+
+        function startAcceptButtonCountdown() {
+            var timer = document.getElementById('timer');
+            var acceptButton = document.getElementById('acceptButton');
+            var declineButton = document.getElementById('declineButton');
+            var countdown = 5; // 5 seconds countdown
+
+            var countdownInterval = setInterval(function() {
+                countdown--;
+                timer.textContent = countdown;
+
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    timer.classList.add('hidden'); // Sembunyikan timer
+                    acceptButton.classList.remove('hidden');
+                    declineButton.classList.remove('hidden');
+                }
+            }, 1000);
+        }
+
+        function disableScroll() {
+            document.body.style.overflow = 'hidden';
+        }
+
+        function enableScroll() {
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('acceptButton').onclick = function() {
+            var modal = document.getElementById('termsModal');
+            modal.classList.remove('show');
+            setTimeout(function() {
+                modal.style.display = 'none';
+                enableScroll(); // Mengaktifkan kembali scroll saat modal ditutup
+                video.play().then(() => {
+                    video.muted = false; // Unmute the video
+                    startCountdown();
+                }).catch(error => {
+                    console.error('Video autoplay failed:', error);
+                });
+            }, 300); // Delay to allow animation to complete
+        };
+
+        document.getElementById('declineButton').onclick = function() {
+            // Coba menutup jendela browser
+            window.location.href = 'nointernet.html';
+        };
+
+        window.onload = function() {
+            document.getElementById('termsModal').classList.add('show');
+            disableScroll(); // Menonaktifkan scroll saat modal ditampilkan
+            startAcceptButtonCountdown(); // Start countdown when the modal is shown
+        };
+    </script>
+</body>
+</html>
